@@ -3,6 +3,9 @@ package com.brodwall.kata.sudoku;
 public class SudokuSolver {
     private static final int SIZE = 9;
 
+    public SudokuSolver(String puzzle) {
+    }
+
     public boolean findSolution(SudokuBoard board) {
         return findSolution(board, 0);
     }
@@ -19,5 +22,12 @@ public class SudokuSolver {
         }
         board.clearCell(row, column);
         return false;
+    }
+
+    public void solve() {
+    }
+
+    public SudokuBoard getBoard() {
+        return null;
     }
 }

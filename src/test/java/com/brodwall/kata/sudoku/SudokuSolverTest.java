@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 public class SudokuSolverTest {
     private SudokuBoard board = mock(SudokuBoard.class);
-    private SudokuSolver solver = new SudokuSolver();
+    private SudokuSolver solver = new SudokuSolver("");
 
     @Before
     public void allCellsAreFilled() {
@@ -67,6 +67,16 @@ public class SudokuSolverTest {
         InOrder order = inOrder(board);
         order.verify(board).setCellValue(7,8, 1);
         order.verify(board).clearCell(7,8);
+    }
+
+    @Test
+    public void shouldSolveCompletePuzzle() throws Exception {
+        String puzzle = "..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..";
+        SudokuSolver solver = new SudokuSolver(puzzle);
+        solver.solve();
+
+        SudokuBoard board = solver.getBoard();
+        assertThat(board.dumpBoard()).matches("([0-9]{9})\n{9}");
     }
 
     private List<Integer> options(Integer... options) {
