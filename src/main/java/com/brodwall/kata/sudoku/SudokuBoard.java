@@ -14,4 +14,7 @@ public class SudokuBoard {
     public void setCellValue(int row, int column, int value) {
         
     }
+
+    public void clearCell(int row, int column) {
+    }
 }

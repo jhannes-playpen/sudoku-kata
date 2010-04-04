@@ -1,8 +1,8 @@
 package com.brodwall.kata.sudoku;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.InOrder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +53,20 @@ public class SudokuSolverTest {
         verify(board).setCellValue(7,8, 2);
         verify(board).setCellValue(8,8, 1);
         verify(board, never()).setCellValue(7,8, 3);
+    }
+
+    @Test
+    public void shouldClearCellWhenBacktracking() throws Exception {
+        when(board.isFilled(7, 8)).thenReturn(false);
+        when(board.getOptionsForCell(7,8)).thenReturn(options(1));
+        when(board.isFilled(8, 8)).thenReturn(false);
+        when(board.getOptionsForCell(8,8)).thenReturn(noOptions());
+
+        assertThat(solver.findSolution(board)).isFalse();
+
+        InOrder order = inOrder(board);
+        order.verify(board).setCellValue(7,8, 1);
+        order.verify(board).clearCell(7,8);
     }
 
     private List<Integer> options(Integer... options) {
