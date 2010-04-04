@@ -51,6 +51,13 @@ public class SudokuBoard {
     }
 
     public String dumpBoard() {
-        return null;
+        StringBuilder result = new StringBuilder();
+        for (Integer[] row : board) {
+            for (Integer values : row) {
+                result.append(values != null ? values.toString() : '.');
+            }
+            result.append("\n");
+        }
+        return result.toString();
     }
 }
