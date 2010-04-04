@@ -8,6 +8,8 @@ public class SudokuSolver {
             int row = index/SIZE, column = index%SIZE;
             if (!board.isFilled(row, column)) {
                 if (board.getOptionsForCell(row, column).isEmpty()) return false;
+                int value = board.getOptionsForCell(row, column).get(0);
+                board.setCellValue(row, column, value);
             }
         }
         return true;
