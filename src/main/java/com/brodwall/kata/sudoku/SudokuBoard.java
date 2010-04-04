@@ -17,4 +17,8 @@ public class SudokuBoard {
 
     public void clearCell(int row, int column) {
     }
+
+    public int getCellValue(int row, int column) {
+        return 0;
+    }
 }
