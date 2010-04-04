@@ -1,5 +1,6 @@
 package com.brodwall.kata.sudoku;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +13,13 @@ public class SudokuBoard {
     }
 
     public List<Integer> getOptionsForCell(int row, int column) {
-        return Arrays.asList(1,2,3,4,5,6,7,8,9);
+        List<Integer> options = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        removeOptionsInRow(options, row);
+        return options;
+    }
+
+    private void removeOptionsInRow(List<Integer> options, int row) {
+        for (int column=0; column<SIZE; column++) options.remove(board[row][column]);
     }
 
     public void setCellValue(int row, int column, int value) {
