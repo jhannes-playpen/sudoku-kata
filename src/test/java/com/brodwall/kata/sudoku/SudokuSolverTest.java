@@ -1,5 +1,6 @@
 package com.brodwall.kata.sudoku;
 
+import org.fest.assertions.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -10,7 +11,7 @@ public class SudokuSolverTest {
         SudokuSolver solver = new SudokuSolver();
         SudokuBoard board = Mockito.mock(SudokuBoard.class);
 
-        assertThat(solver.findSolution()).isTrue();
+        Assertions.assertThat(solver.findSolution()).isTrue();
 
     }
 
