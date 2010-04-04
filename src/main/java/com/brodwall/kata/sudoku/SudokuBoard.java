@@ -49,4 +49,8 @@ public class SudokuBoard {
     public int getCellValue(int row, int column) {
         return board[row][column];
     }
+
+    public String dumpBoard() {
+        return null;
+    }
 }

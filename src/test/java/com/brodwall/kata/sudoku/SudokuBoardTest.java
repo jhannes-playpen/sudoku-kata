@@ -57,4 +57,18 @@ public class SudokuBoardTest {
         assertThat(board.getOptionsForCell(4,4)).excludes(1,2,3);
         assertThat(board.getOptionsForCell(3,5)).excludes(1,2,3);
     }
+
+    @Test
+    public void shouldDumpBoard() throws Exception {
+        board.setCellValue(0,0, 1);
+        board.setCellValue(0,8, 2);
+        board.setCellValue(8,8, 9);
+        String[] boardLines = board.dumpBoard().split("\n");
+        assertThat(boardLines).hasSize(9);
+        for (String line : boardLines) assertThat(line).hasSize(9);
+        assertThat(boardLines[0]).startsWith("1").endsWith("2");
+        assertThat(boardLines[1]).matches("\\.{9}");
+        assertThat(boardLines[8]).endsWith("9");
+    }
+
 }
