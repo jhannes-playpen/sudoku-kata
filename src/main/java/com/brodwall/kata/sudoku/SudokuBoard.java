@@ -16,7 +16,17 @@ public class SudokuBoard {
         List<Integer> options = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
         removeOptionsInRow(options, row);
         removeOptionsInColumn(options, column);
+        removeOptionsInBox(options, row, column);
         return options;
+    }
+
+    private void removeOptionsInBox(List<Integer> options, int row, int column) {
+        int boxRow = row - row%3, boxColumn = column - column%3;
+        for (int rowOffset=0; rowOffset<3; rowOffset++) {
+            for (int columnOffset=0; columnOffset<3; columnOffset++) {
+                options.remove(board[boxRow+rowOffset][boxColumn+columnOffset]);
+            }
+        }
     }
 
     private void removeOptionsInColumn(List<Integer> options, int column) {
