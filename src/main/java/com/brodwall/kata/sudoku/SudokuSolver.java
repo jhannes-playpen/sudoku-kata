@@ -12,9 +12,11 @@ public class SudokuSolver {
         
         int row = index/SIZE, column = index%SIZE;
         if (!board.isFilled(row, column)) {
-            if (board.getOptionsForCell(row, column).isEmpty()) return false;
-            int value = board.getOptionsForCell(row, column).get(0);
-            board.setCellValue(row, column, value);
+            for (Integer value : board.getOptionsForCell(row, column)) {
+                board.setCellValue(row, column, value);
+                if (findSolution(board, index+1)) return true;
+            }
+            return false;
         }
         return findSolution(board, index+1);
     }

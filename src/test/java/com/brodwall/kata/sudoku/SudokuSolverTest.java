@@ -42,7 +42,6 @@ public class SudokuSolverTest {
     }
 
     @Test
-    @Ignore("Requires refactoring")
     public void shouldBacktrackWhenNoOptionsInFutureCell() throws Exception {
         when(board.isFilled(7, 8)).thenReturn(false);
         when(board.getOptionsForCell(7,8)).thenReturn(options(1,2,3));
