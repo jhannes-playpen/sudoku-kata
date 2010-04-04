@@ -71,4 +71,23 @@ public class SudokuBoardTest {
         assertThat(boardLines[8]).endsWith("9");
     }
 
+    @Test
+    public void shouldReadBoard() throws Exception {
+        StringBuilder boardAsText = repeat('.', 9*9);
+        boardAsText.setCharAt(0*9+0, '1');
+        boardAsText.setCharAt(0*9+8, '2');
+        boardAsText.setCharAt(8*9+8, '9');
+
+        board.readBoard(boardAsText.toString());
+
+        assertThat(board.getCellValue(0,0)).isEqualTo(1);
+        assertThat(board.getCellValue(0,8)).isEqualTo(2);
+        assertThat(board.getCellValue(8,8)).isEqualTo(9);
+    }
+
+    private StringBuilder repeat(char c, int count) {
+        StringBuilder builder = new StringBuilder();
+        for (int i=0; i<count; i++) builder.append(c);
+        return builder;
+    }
 }

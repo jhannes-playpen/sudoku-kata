@@ -60,4 +60,7 @@ public class SudokuBoard {
         }
         return result.toString();
     }
+
+    public void readBoard(String boardAsString) {
+    }
 }
