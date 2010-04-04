@@ -7,7 +7,7 @@ public class SudokuSolver {
         for (int index=0; index<SIZE*SIZE; index++) {
             int row = index/SIZE, column = index%SIZE;
             if (!board.isFilled(row, column)) {
-                if (board.getSolutionsFor(row, column).isEmpty()) return false;
+                if (board.getOptionsForCell(row, column).isEmpty()) return false;
             }
         }
         return true;

@@ -29,14 +29,14 @@ public class SudokuSolverTest {
     @Test
     public void shouldNotFindSolutionWhenCellHasNoOptions() throws Exception {
         when(board.isFilled(8, 8)).thenReturn(false);
-        when(board.getSolutionsFor(8,8)).thenReturn(noOptions());
+        when(board.getOptionsForCell(8,8)).thenReturn(noOptions());
         assertThat(solver.findSolution(board)).isFalse();
     }
 
     @Test
     public void shouldFindSolutionWhenCellHasOneOption() throws Exception {
         when(board.isFilled(8, 8)).thenReturn(false);
-        when(board.getSolutionsFor(8,8)).thenReturn(oneOption(3));
+        when(board.getOptionsForCell(8,8)).thenReturn(oneOption(3));
         assertThat(solver.findSolution(board)).isTrue();
         
     }

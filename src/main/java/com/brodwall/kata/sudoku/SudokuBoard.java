@@ -7,7 +7,7 @@ public class SudokuBoard {
         return false;
     }
 
-    public List<Integer> getSolutionsFor(int row, int column) {
+    public List<Integer> getOptionsForCell(int row, int column) {
         return null;
     }
 }
