@@ -65,10 +65,12 @@ public class SudokuBoard {
         int index = 0;
         for (Integer[] row : board) {
             for (int column = 0; column < row.length; column++) {
-                char c = boardAsString.charAt(index++);
-                Integer value = c != '.' ? Integer.valueOf(c + "") : null;
-                row[column] = value;
+                row[column] = readValue(boardAsString.charAt(index++));
             }
         }
+    }
+
+    private Integer readValue(char c) {
+        return c != '.' ? Integer.valueOf(c + "") : null;
     }
 }
