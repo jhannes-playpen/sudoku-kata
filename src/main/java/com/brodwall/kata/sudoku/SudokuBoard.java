@@ -62,5 +62,13 @@ public class SudokuBoard {
     }
 
     public void readBoard(String boardAsString) {
+        int index = 0;
+        for (Integer[] row : board) {
+            for (int column = 0; column < row.length; column++) {
+                char c = boardAsString.charAt(index++);
+                Integer value = c != '.' ? Integer.valueOf(c + "") : null;
+                row[column] = value;
+            }
+        }
     }
 }
