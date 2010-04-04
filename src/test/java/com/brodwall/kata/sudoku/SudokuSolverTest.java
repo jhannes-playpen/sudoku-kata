@@ -9,9 +9,7 @@ import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class SudokuSolverTest {
     private SudokuBoard board = mock(SudokuBoard.class);
@@ -40,6 +38,24 @@ public class SudokuSolverTest {
         when(board.getOptionsForCell(8,8)).thenReturn(oneOption(3));
         assertThat(solver.findSolution(board)).isTrue();
         verify(board).setCellValue(8,8, 3);
+    }
+
+    @Test
+    public void shouldBacktrackWhenNoOptionsInFutureCell() throws Exception {
+        when(board.isFilled(7, 8)).thenReturn(false);
+        when(board.getOptionsForCell(7,8)).thenReturn(options(1,2,3));
+        when(board.isFilled(8, 8)).thenReturn(false);
+        when(board.getOptionsForCell(8,8)).thenReturn(noOptions()).thenReturn(oneOption(1));
+
+        assertThat(solver.findSolution(board)).isTrue();
+
+        verify(board).setCellValue(7,8, 2);
+        verify(board).setCellValue(8,8, 1);
+        verify(board, never()).setCellValue(7,8, 3);
+    }
+
+    private List<Integer> options(Integer... options) {
+        return Arrays.asList(options);
     }
 
     private List<Integer> oneOption(int option) {
