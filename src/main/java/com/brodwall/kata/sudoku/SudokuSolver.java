@@ -16,6 +16,7 @@ public class SudokuSolver {
                 board.setCellValue(row, column, value);
                 if (findSolution(board, index+1)) return true;
             }
+            board.clearCell(row, column);
             return false;
         }
         return findSolution(board, index+1);
