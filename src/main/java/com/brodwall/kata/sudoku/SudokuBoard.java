@@ -10,4 +10,8 @@ public class SudokuBoard {
     public List<Integer> getOptionsForCell(int row, int column) {
         return null;
     }
+
+    public void setCellValue(int row, int column, int value) {
+        
+    }
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class SudokuSolverTest {
@@ -38,7 +39,7 @@ public class SudokuSolverTest {
         when(board.isFilled(8, 8)).thenReturn(false);
         when(board.getOptionsForCell(8,8)).thenReturn(oneOption(3));
         assertThat(solver.findSolution(board)).isTrue();
-        
+        verify(board).setCellValue(8,8, 3);
     }
 
     private List<Integer> oneOption(int option) {
