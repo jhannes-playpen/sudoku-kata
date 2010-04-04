@@ -39,4 +39,13 @@ public class SudokuBoardTest {
         assertThat(board.getOptionsForCell(row, 4)).excludes(1,2);
         assertThat(board.getOptionsForCell(row+1, 4)).contains(1,2);
     }
+
+    @Test
+    public void shouldNotAllowValuesUsedInSameColumn() throws Exception {
+        int column = 4;
+        board.setCellValue(0, column, 8);
+        board.setCellValue(8, column, 9);
+        assertThat(board.getOptionsForCell(5, column)).excludes(8,9);
+        assertThat(board.getOptionsForCell(5, column+1)).contains(8,9);
+    }
 }
