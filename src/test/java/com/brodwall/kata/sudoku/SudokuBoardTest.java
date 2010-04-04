@@ -48,4 +48,13 @@ public class SudokuBoardTest {
         assertThat(board.getOptionsForCell(5, column)).excludes(8,9);
         assertThat(board.getOptionsForCell(5, column+1)).contains(8,9);
     }
+
+    @Test
+    public void shouldNotAllowValuesUsedInSameBox() throws Exception {
+        board.setCellValue(3,3, 1);
+        board.setCellValue(3,5, 2);
+        board.setCellValue(5,5, 3);
+        assertThat(board.getOptionsForCell(4,4)).excludes(1,2,3);
+        assertThat(board.getOptionsForCell(3,5)).excludes(1,2,3);
+    }
 }
