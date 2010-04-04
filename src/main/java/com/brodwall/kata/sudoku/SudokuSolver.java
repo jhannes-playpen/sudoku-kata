@@ -8,17 +8,16 @@ public class SudokuSolver {
     }
 
     private boolean findSolution(SudokuBoard board, int index) {
-        if (index == SIZE*SIZE) return true;
-        
         int row = index/SIZE, column = index%SIZE;
-        if (!board.isFilled(row, column)) {
-            for (Integer value : board.getOptionsForCell(row, column)) {
-                board.setCellValue(row, column, value);
-                if (findSolution(board, index+1)) return true;
-            }
-            board.clearCell(row, column);
-            return false;
+
+        if (index == SIZE*SIZE) return true;
+        if (board.isFilled(row, column))  return findSolution(board, index+1);
+
+        for (Integer value : board.getOptionsForCell(row, column)) {
+            board.setCellValue(row, column, value);
+            if (findSolution(board, index+1)) return true;
         }
-        return findSolution(board, index+1);
+        board.clearCell(row, column);
+        return false;
     }
 }
