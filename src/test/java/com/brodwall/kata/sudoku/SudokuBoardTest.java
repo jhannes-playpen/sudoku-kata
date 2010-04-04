@@ -25,4 +25,9 @@ public class SudokuBoardTest {
         board.clearCell(1,2);
         assertThat(board.isFilled(1,2)).isFalse();
     }
+
+    @Test
+    public void shouldReturnAllOptionsForEmptyCell() throws Exception {
+        assertThat(board.getOptionsForCell(0,0)).contains(1,2,3,4,5,6,7,8,9);
+    }
 }
