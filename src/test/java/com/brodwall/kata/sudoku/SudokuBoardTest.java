@@ -30,4 +30,13 @@ public class SudokuBoardTest {
     public void shouldReturnAllOptionsForEmptyCell() throws Exception {
         assertThat(board.getOptionsForCell(0,0)).contains(1,2,3,4,5,6,7,8,9);
     }
+
+    @Test
+    public void shouldNotAllowValuesUsedInSameRow() throws Exception {
+        int row = 3;
+        board.setCellValue(row, 0, 1);
+        board.setCellValue(row, 8, 2);
+        assertThat(board.getOptionsForCell(row, 4)).excludes(1,2);
+        assertThat(board.getOptionsForCell(row+1, 4)).contains(1,2);
+    }
 }
