@@ -18,4 +18,11 @@ public class SudokuBoardTest {
         assertThat(board.getCellValue(3,1)).isEqualTo(8);
         assertThat(board.isFilled(3,1)).isTrue();
     }
+
+    @Test
+    public void shouldClearCell() throws Exception {
+        board.setCellValue(1,2, 3);
+        board.clearCell(1,2);
+        assertThat(board.isFilled(1,2)).isFalse();
+    }
 }
