@@ -4,3 +4,5 @@ See branch commit_per_test for a run where each I committed for each failing tes
 and then again when the test completed.
 
 http://github.com/jhannes/sudoku-kata/commits/commit_per_test/
+
+See screencast at http://blip.tv/file/3443283/
