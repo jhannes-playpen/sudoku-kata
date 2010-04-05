@@ -2,8 +2,14 @@ package com.brodwall.kata.sudoku;
 
 public class SudokuSolver {
     private static final int SIZE = 9;
+    private SudokuBoard board = new SudokuBoard();
 
     public SudokuSolver(String puzzle) {
+        board.readBoard(puzzle);        
+    }
+
+    public SudokuSolver(SudokuBoard board) {
+        this.board = board;
     }
 
     public boolean findSolution(SudokuBoard board) {
@@ -25,9 +31,10 @@ public class SudokuSolver {
     }
 
     public void solve() {
+        findSolution(board);
     }
 
     public SudokuBoard getBoard() {
-        return null;
+        return board;
     }
 }

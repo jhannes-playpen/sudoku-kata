@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 public class SudokuSolverTest {
     private SudokuBoard board = mock(SudokuBoard.class);
-    private SudokuSolver solver = new SudokuSolver("");
+    private SudokuSolver solver = new SudokuSolver(board);
 
     @Before
     public void allCellsAreFilled() {
@@ -76,7 +76,11 @@ public class SudokuSolverTest {
         solver.solve();
 
         SudokuBoard board = solver.getBoard();
-        assertThat(board.dumpBoard()).matches("([0-9]{9})\n{9}");
+        String[] lines = board.dumpBoard().split("\n");
+        assertThat(lines).hasSize(9);
+        for (String line : lines) {
+            assertThat(line).matches("[1-9]{9}");
+        }
     }
 
     private List<Integer> options(Integer... options) {
