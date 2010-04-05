@@ -1,5 +1,9 @@
 package com.brodwall.kata.sudoku;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class SudokuSolver {
     private static final int SIZE = 9;
     private SudokuBoard board = new SudokuBoard();
@@ -32,5 +36,16 @@ public class SudokuSolver {
 
     public String dumpBoard() {
         return board.dumpBoard();
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(args[0]));
+        String line;
+        while ((line=reader.readLine()) != null) {
+            SudokuSolver solver = new SudokuSolver(line);
+            System.out.println("Solving: \n" + solver.dumpBoard());
+            solver.solve();
+            System.out.println("Solved: \n" + solver.dumpBoard());
+        }
     }
 }
