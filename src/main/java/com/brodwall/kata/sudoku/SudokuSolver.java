@@ -12,10 +12,6 @@ public class SudokuSolver {
         this.board = board;
     }
 
-    public boolean findSolution(SudokuBoard board) {
-        return findSolution(board, 0);
-    }
-
     private boolean findSolution(SudokuBoard board, int index) {
         int row = index/SIZE, column = index%SIZE;
 
@@ -30,11 +26,11 @@ public class SudokuSolver {
         return false;
     }
 
-    public void solve() {
-        findSolution(board);
+    public boolean solve() {
+        return findSolution(board, 0);
     }
 
-    public SudokuBoard getBoard() {
-        return board;
+    public String dumpBoard() {
+        return board.dumpBoard();
     }
 }

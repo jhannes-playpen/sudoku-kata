@@ -23,21 +23,21 @@ public class SudokuSolverTest {
 
     @Test
     public void shouldFindSolutionToFilledBoard() {
-        assertThat(solver.findSolution(board)).isTrue();
+        assertThat(solver.solve()).isTrue();
     }
 
     @Test
     public void shouldNotFindSolutionWhenCellHasNoOptions() throws Exception {
         when(board.isFilled(8, 8)).thenReturn(false);
         when(board.getOptionsForCell(8,8)).thenReturn(noOptions());
-        assertThat(solver.findSolution(board)).isFalse();
+        assertThat(solver.solve()).isFalse();
     }
 
     @Test
     public void shouldFindSolutionWhenCellHasOneOption() throws Exception {
         when(board.isFilled(8, 8)).thenReturn(false);
         when(board.getOptionsForCell(8,8)).thenReturn(oneOption(3));
-        assertThat(solver.findSolution(board)).isTrue();
+        assertThat(solver.solve()).isTrue();
         verify(board).setCellValue(8,8, 3);
     }
 
@@ -48,7 +48,7 @@ public class SudokuSolverTest {
         when(board.isFilled(8, 8)).thenReturn(false);
         when(board.getOptionsForCell(8,8)).thenReturn(noOptions()).thenReturn(oneOption(1));
 
-        assertThat(solver.findSolution(board)).isTrue();
+        assertThat(solver.solve()).isTrue();
 
         verify(board).setCellValue(7,8, 2);
         verify(board).setCellValue(8,8, 1);
@@ -62,7 +62,7 @@ public class SudokuSolverTest {
         when(board.isFilled(8, 8)).thenReturn(false);
         when(board.getOptionsForCell(8,8)).thenReturn(noOptions());
 
-        assertThat(solver.findSolution(board)).isFalse();
+        assertThat(solver.solve()).isFalse();
 
         InOrder order = inOrder(board);
         order.verify(board).setCellValue(7,8, 1);
@@ -75,8 +75,7 @@ public class SudokuSolverTest {
         SudokuSolver solver = new SudokuSolver(puzzle);
         solver.solve();
 
-        SudokuBoard board = solver.getBoard();
-        String[] lines = board.dumpBoard().split("\n");
+        String[] lines = solver.dumpBoard().split("\n");
         assertThat(lines).hasSize(9);
         for (String line : lines) {
             assertThat(line).matches("[1-9]{9}");
