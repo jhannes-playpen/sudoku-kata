@@ -1,0 +1,6 @@
+Multiple attempts at solving Sudoku using TDD. Each attempt is in a separate branch.
+
+See branch commit_per_test for a run where each I committed for each failing test
+and then again when the test completed.
+
+http://github.com/jhannes/sudoku-kata/commits/commit_per_test/
